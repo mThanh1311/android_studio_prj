@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F5F0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvRoomName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Room"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1E293B" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textColor="#8B5E3C"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tvTotalPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tổng tiền sẽ được tính theo số đêm"
+            android:textColor="#64748B"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/edtCustomerName"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Tên khách hàng"
+            android:background="@drawable/bg_input"
+            android:padding="14dp"
+            android:layout_marginTop="18dp" />
+
+        <EditText
+            android:id="@+id/edtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Số điện thoại"
+            android:inputType="phone"
+            android:background="@drawable/bg_input"
+            android:padding="14dp"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/edtCheckIn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Ngày nhận phòng: 20/05/2026"
+            android:background="@drawable/bg_input"
+            android:padding="14dp"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/edtCheckOut"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Ngày trả phòng: 22/05/2026"
+            android:background="@drawable/bg_input"
+            android:padding="14dp"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/edtTotalDays"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Số đêm"
+            android:inputType="number"
+            android:background="@drawable/bg_input"
+            android:padding="14dp"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/btnConfirmBooking"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Xác nhận đặt phòng"
+            android:layout_marginTop="22dp" />
+
+    </LinearLayout>
+
+</ScrollView>

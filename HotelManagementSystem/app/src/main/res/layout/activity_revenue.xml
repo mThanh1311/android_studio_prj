@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F5F0"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thống kê doanh thu"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#1E293B"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng doanh thu"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvRevenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0 VNĐ"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#8B5E3C"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Số lượng booking" />
+
+    <TextView
+        android:id="@+id/tvBookingCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="18dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Số lượng phòng" />
+
+    <TextView
+        android:id="@+id/tvRoomCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
