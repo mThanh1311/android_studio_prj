@@ -1,39 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="#F8F5F0">
+    android:background="@color/booking_bg">
 
-    <TextView
-        android:id="@+id/tvWelcome"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Xin chào"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#1E293B"
-        android:layout_marginBottom="24dp" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnRooms"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Xem danh sách phòng" />
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@color/booking_blue"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnMyBookings"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Booking của tôi"
-        android:layout_marginTop="14dp" />
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xin chào, yen"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Đăng xuất"
-        android:layout_marginTop="14dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Tìm phòng nghỉ phù hợp cho chuyến đi của bạn"
+                android:textColor="#DCEBFF"
+                android:textSize="15sp" />
 
-</LinearLayout>
+            <!-- SEARCH BOX -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_search_box"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bạn muốn đi đâu?"
+                    android:textColor="@color/booking_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Khách sạn • Phòng nghỉ • Đặt phòng nhanh"
+                    android:textColor="@color/booking_muted"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- BUTTONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- PRIMARY -->
+            <Button
+                android:id="@+id/btnRooms"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/booking_yellow"
+                android:text="Tìm phòng ngay"
+                android:textColor="#1E293B"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- SECONDARY -->
+            <Button
+                android:id="@+id/btnMyBookings"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="@color/booking_light_blue"
+                android:text="Phòng Đã Đặt"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- OUTLINE -->
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Đăng xuất"
+                android:textColor="@color/booking_blue"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

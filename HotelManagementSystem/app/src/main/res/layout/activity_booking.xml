@@ -2,94 +2,124 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F5F0">
+    android:background="@color/booking_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvRoomName"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:background="@color/booking_blue"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvRoomName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Price"
+                android:textColor="@color/booking_yellow"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Room"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#1E293B" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/tvPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Price"
-            android:textColor="#8B5E3C"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/tvTotalPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_booking_card"
+                android:padding="14dp"
+                android:text="Tổng tiền sẽ được tính theo số đêm"
+                android:textColor="@color/booking_text"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tvTotalPreview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tổng tiền sẽ được tính theo số đêm"
-            android:textColor="#64748B"
-            android:layout_marginTop="8dp" />
+            <EditText
+                android:id="@+id/edtCustomerName"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_input"
+                android:hint="Tên khách hàng"
+                android:padding="14dp"
+                android:textColor="@color/booking_text"
+                android:textColorHint="@color/booking_muted" />
 
-        <EditText
-            android:id="@+id/edtCustomerName"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Tên khách hàng"
-            android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginTop="18dp" />
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input"
+                android:hint="Số điện thoại"
+                android:inputType="phone"
+                android:padding="14dp"
+                android:textColor="@color/booking_text"
+                android:textColorHint="@color/booking_muted" />
 
-        <EditText
-            android:id="@+id/edtPhone"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Số điện thoại"
-            android:inputType="phone"
-            android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginTop="12dp" />
+            <EditText
+                android:id="@+id/edtCheckIn"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input"
+                android:hint="Ngày nhận phòng: 20/05/2026"
+                android:padding="14dp"
+                android:textColor="@color/booking_text"
+                android:textColorHint="@color/booking_muted" />
 
-        <EditText
-            android:id="@+id/edtCheckIn"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Ngày nhận phòng: 20/05/2026"
-            android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginTop="12dp" />
+            <EditText
+                android:id="@+id/edtCheckOut"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input"
+                android:hint="Ngày trả phòng: 22/05/2026"
+                android:padding="14dp"
+                android:textColor="@color/booking_text"
+                android:textColorHint="@color/booking_muted" />
 
-        <EditText
-            android:id="@+id/edtCheckOut"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Ngày trả phòng: 22/05/2026"
-            android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginTop="12dp" />
+            <EditText
+                android:id="@+id/edtTotalDays"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input"
+                android:hint="Số đêm"
+                android:inputType="number"
+                android:padding="14dp"
+                android:textColor="@color/booking_text"
+                android:textColorHint="@color/booking_muted" />
 
-        <EditText
-            android:id="@+id/edtTotalDays"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Số đêm"
-            android:inputType="number"
-            android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginTop="12dp" />
+            <Button
+                android:id="@+id/btnConfirmBooking"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_yellow_button"
+                android:text="Xác nhận đặt phòng"
+                android:textColor="@color/booking_text"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnConfirmBooking"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Xác nhận đặt phòng"
-            android:layout_marginTop="22dp" />
-
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
