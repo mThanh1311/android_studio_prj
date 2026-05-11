@@ -1,6 +1,7 @@
 package com.example.hotelmanagementsystem.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelmanagementsystem.R;
+import com.example.hotelmanagementsystem.activities.BookingDetailActivity;
 import com.example.hotelmanagementsystem.database.DatabaseHelper;
 import com.example.hotelmanagementsystem.models.Booking;
 
@@ -46,13 +48,30 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
 
         holder.tvRoomName.setText(booking.getRoomName());
+        holder.tvBookingCode.setText("Mã booking: #" + booking.getId());
         holder.tvCustomerName.setText("Khách: " + booking.getCustomerName());
         holder.tvPhone.setText("SĐT: " + booking.getPhone());
         holder.tvDate.setText("Ngày: " + booking.getCheckIn() + " - " + booking.getCheckOut());
+        holder.tvTotalDays.setText("Số đêm: " + booking.getTotalDays());
         holder.tvTotal.setText("Tổng tiền: " + formatter.format(booking.getTotalPrice()) + " VNĐ");
-        holder.tvStatus.setText("Trạng thái: " + booking.getStatus());
 
-        if (showCancelButton && booking.getStatus().equals("booked")) {
+        String statusText = getStatusText(booking.getStatus());
+        holder.tvStatus.setText(statusText);
+
+        if ("cancelled".equals(booking.getStatus())) {
+            holder.tvStatus.setTextColor(0xFFDC2626);
+            holder.btnCancel.setVisibility(View.GONE);
+        } else {
+            holder.tvStatus.setTextColor(0xFF0D47A1);
+        }
+
+        holder.btnViewDetail.setOnClickListener(v -> {
+            Intent intent = new Intent(context, BookingDetailActivity.class);
+            intent.putExtra("booking_id", booking.getId());
+            context.startActivity(intent);
+        });
+
+        if (showCancelButton && "booked".equals(booking.getStatus())) {
             holder.btnCancel.setVisibility(View.VISIBLE);
 
             holder.btnCancel.setOnClickListener(v -> {
@@ -65,6 +84,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
                             booking.getRoomId(),
                             booking.getRoomName(),
                             booking.getCustomerName(),
+                            booking.getCustomerEmail(),
                             booking.getPhone(),
                             booking.getCheckIn(),
                             booking.getCheckOut(),
@@ -74,7 +94,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
                     );
 
                     bookingList.set(position, updatedBooking);
-                    notifyDataSetChanged();
+                    notifyItemChanged(position);
 
                     Toast.makeText(context, "Đã huỷ booking", Toast.LENGTH_SHORT).show();
                 } else {
@@ -91,19 +111,35 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         return bookingList.size();
     }
 
+    private String getStatusText(String status) {
+        if ("booked".equals(status)) {
+            return "Đã đặt";
+        } else if ("cancelled".equals(status)) {
+            return "Đã huỷ";
+        } else if ("completed".equals(status)) {
+            return "Hoàn thành";
+        }
+
+        return status;
+    }
+
     static class BookingViewHolder extends RecyclerView.ViewHolder {
-        TextView tvRoomName, tvCustomerName, tvPhone, tvDate, tvTotal, tvStatus;
-        Button btnCancel;
+        TextView tvRoomName, tvBookingCode, tvCustomerName, tvPhone;
+        TextView tvDate, tvTotalDays, tvTotal, tvStatus;
+        Button btnViewDetail, btnCancel;
 
         public BookingViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvRoomName = itemView.findViewById(R.id.tvRoomName);
+            tvBookingCode = itemView.findViewById(R.id.tvBookingCode);
             tvCustomerName = itemView.findViewById(R.id.tvCustomerName);
             tvPhone = itemView.findViewById(R.id.tvPhone);
             tvDate = itemView.findViewById(R.id.tvDate);
+            tvTotalDays = itemView.findViewById(R.id.tvTotalDays);
             tvTotal = itemView.findViewById(R.id.tvTotal);
             tvStatus = itemView.findViewById(R.id.tvStatus);
+            btnViewDetail = itemView.findViewById(R.id.btnViewDetail);
             btnCancel = itemView.findViewById(R.id.btnCancel);
         }
     }

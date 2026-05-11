@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "hotel_management.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 4;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -23,33 +23,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String createUsers = "CREATE TABLE users (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT," +
-                "email TEXT UNIQUE," +
-                "password TEXT," +
-                "role TEXT DEFAULT 'user')";
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, " +
+                "email TEXT UNIQUE, " +
+                "phone TEXT, " +
+                "dob TEXT, " +
+                "gender TEXT, " +
+                "password TEXT, " +
+                "role TEXT" +
+                ")";
 
         String createRooms = "CREATE TABLE rooms (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "room_name TEXT," +
-                "room_type TEXT," +
-                "price INTEGER," +
-                "capacity INTEGER," +
-                "description TEXT," +
-                "status TEXT DEFAULT 'available')";
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "room_name TEXT, " +
+                "room_type TEXT, " +
+                "price INTEGER, " +
+                "capacity INTEGER, " +
+                "description TEXT, " +
+                "status TEXT DEFAULT 'available', " +
+                "image_name TEXT, " +
+                "branch_name TEXT" +
+                ")";
 
         String createBookings = "CREATE TABLE bookings (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "user_id INTEGER," +
-                "room_id INTEGER," +
-                "customer_name TEXT," +
-                "phone TEXT," +
-                "check_in TEXT," +
-                "check_out TEXT," +
-                "total_days INTEGER," +
-                "total_price INTEGER," +
-                "status TEXT DEFAULT 'booked')";
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_id INTEGER, " +
+                "room_id INTEGER, " +
+                "customer_name TEXT, " +
+                "phone TEXT, " +
+                "check_in TEXT, " +
+                "check_out TEXT, " +
+                "total_days INTEGER, " +
+                "total_price INTEGER, " +
+                "status TEXT DEFAULT 'booked'" +
+                ")";
 
         db.execSQL(createUsers);
         db.execSQL(createRooms);
@@ -62,11 +71,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO users(name, email, password, role) VALUES " +
                 "('Administrator', 'admin@gmail.com', 'admin123', 'admin')");
 
-        db.execSQL("INSERT INTO rooms(room_name, room_type, price, capacity, description, status) VALUES " +
-                "('Deluxe Ocean Room', 'Deluxe', 850000, 2, 'Phòng deluxe hướng biển, nội thất hiện đại, phù hợp cho cặp đôi.', 'available')," +
-                "('Royal Suite', 'Suite', 1800000, 4, 'Phòng suite cao cấp có phòng khách riêng, view thành phố.', 'available')," +
-                "('Family Comfort Room', 'Family', 1200000, 5, 'Phòng gia đình rộng rãi, đầy đủ tiện nghi.', 'available')," +
-                "('Standard City Room', 'Standard', 550000, 2, 'Phòng tiêu chuẩn, sạch đẹp, giá hợp lý.', 'available')");
+        db.execSQL("INSERT INTO rooms(room_name, room_type, price, capacity, description, status, image_name, branch_name) VALUES " +
+                "('Standard City Room', 'Standard', 550000, 2, 'Phòng tiêu chuẩn, sạch đẹp, giá hợp lý.', 'available', 'room_standard', 'Chi nhánh Trung tâm Thành phố')," +
+                "('Deluxe Ocean Room', 'Deluxe', 850000, 2, 'Phòng deluxe hướng biển, nội thất hiện đại, phù hợp cho cặp đôi.', 'available', 'room_deluxe', 'Chi nhánh Biển Xanh Resort')," +
+                "('Royal Suite', 'Suite', 1800000, 4, 'Phòng suite cao cấp có phòng khách riêng, view thành phố.', 'available', 'room_suite', 'Chi nhánh Riverside Premium')," +
+                "('Family Comfort Room', 'Family', 1200000, 5, 'Phòng gia đình rộng rãi, đầy đủ tiện nghi.', 'available', 'room_family', 'Chi nhánh Trung tâm Thành phố')," +
+                "('Deluxe Garden View', 'Deluxe', 950000, 2, 'Phòng deluxe view sân vườn, không gian yên tĩnh.', 'available', 'room_deluxe', 'Chi nhánh Riverside Premium')," +
+                "('Beach Family Suite', 'Family', 1500000, 5, 'Phòng gia đình gần biển, phù hợp nghỉ dưỡng.', 'available', 'room_family', 'Chi nhánh Biển Xanh Resort')");
     }
 
     @Override
@@ -77,11 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean registerUser(String name, String email, String password) {
-        if (isEmailExists(email)) {
-            return false;
-        }
-
+    public boolean registerUser(String name, String email, String password, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -89,6 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("email", email);
         values.put("password", password);
         values.put("role", "user");
+        values.put("gender", gender);
 
         long result = db.insert("users", null, values);
         return result != -1;
@@ -148,7 +156,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getInt(cursor.getColumnIndexOrThrow("price")),
                         cursor.getInt(cursor.getColumnIndexOrThrow("capacity")),
                         cursor.getString(cursor.getColumnIndexOrThrow("description")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("status"))
+                        cursor.getString(cursor.getColumnIndexOrThrow("status")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("image_name")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("branch_name"))
                 );
 
                 list.add(room);
@@ -158,6 +168,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return list;
     }
+
+
+    public ArrayList<Room> searchRooms(String keyword, String roomType, String branchName) {
+        ArrayList<Room> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        StringBuilder query = new StringBuilder("SELECT * FROM rooms WHERE 1=1");
+        ArrayList<String> args = new ArrayList<>();
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            query.append(" AND (room_name LIKE ? OR room_type LIKE ? OR branch_name LIKE ?)");
+            String searchKeyword = "%" + keyword.trim() + "%";
+            args.add(searchKeyword);
+            args.add(searchKeyword);
+            args.add(searchKeyword);
+        }
+
+        if (roomType != null && !roomType.equalsIgnoreCase("All")) {
+            query.append(" AND room_type = ?");
+            args.add(roomType);
+        }
+
+        if (branchName != null && !branchName.equalsIgnoreCase("All")) {
+            query.append(" AND branch_name = ?");
+            args.add(branchName);
+        }
+
+        query.append(" ORDER BY id DESC");
+
+        Cursor cursor = db.rawQuery(query.toString(), args.toArray(new String[0]));
+
+        if (cursor.moveToFirst()) {
+            do {
+                Room room = new Room(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("room_name")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("room_type")),
+                        cursor.getInt(cursor.getColumnIndexOrThrow("price")),
+                        cursor.getInt(cursor.getColumnIndexOrThrow("capacity")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("description")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("status")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("image_name")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("branch_name"))
+                );
+
+                list.add(room);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return list;
+    }
+
 
     public Room getRoomById(int roomId) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -175,7 +238,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getInt(cursor.getColumnIndexOrThrow("price")),
                     cursor.getInt(cursor.getColumnIndexOrThrow("capacity")),
                     cursor.getString(cursor.getColumnIndexOrThrow("description")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("status"))
+                    cursor.getString(cursor.getColumnIndexOrThrow("status")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("image_name")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("branch_name"))
             );
 
             cursor.close();
@@ -196,6 +261,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("capacity", capacity);
         values.put("description", description);
         values.put("status", status);
+        values.put("image_name", getImageNameByType(type));
+        values.put("branch_name", "Chi nhánh Trung tâm Thành phố");
 
         long result = db.insert("rooms", null, values);
         return result != -1;
@@ -211,6 +278,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("capacity", capacity);
         values.put("description", description);
         values.put("status", status);
+        values.put("image_name", getImageNameByType(type));
 
         int result = db.update(
                 "rooms",
@@ -253,13 +321,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public int createBookingAndReturnId(int userId, int roomId, String customerName, String phone,
+                                        String checkIn, String checkOut, int totalDays, int totalPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("user_id", userId);
+        values.put("room_id", roomId);
+        values.put("customer_name", customerName);
+        values.put("phone", phone);
+        values.put("check_in", checkIn);
+        values.put("check_out", checkOut);
+        values.put("total_days", totalDays);
+        values.put("total_price", totalPrice);
+        values.put("status", "booked");
+
+        long result = db.insert("bookings", null, values);
+
+        if (result == -1) {
+            return -1;
+        }
+
+        return (int) result;
+    }
+
     public ArrayList<Booking> getBookingsByUser(int userId) {
         ArrayList<Booking> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT b.*, r.room_name FROM bookings b " +
+        String query = "SELECT b.*, r.room_name, u.email AS user_email " +
+                "FROM bookings b " +
                 "JOIN rooms r ON b.room_id = r.id " +
-                "WHERE b.user_id = ? ORDER BY b.id DESC";
+                "JOIN users u ON b.user_id = u.id " +
+                "WHERE b.user_id = ? " +
+                "ORDER BY b.id DESC";
 
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
 
@@ -277,8 +372,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Booking> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT b.*, r.room_name FROM bookings b " +
+        String query = "SELECT b.*, r.room_name, u.email AS user_email " +
+                "FROM bookings b " +
                 "JOIN rooms r ON b.room_id = r.id " +
+                "JOIN users u ON b.user_id = u.id " +
                 "ORDER BY b.id DESC";
 
         Cursor cursor = db.rawQuery(query, null);
@@ -293,6 +390,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public Booking getBookingById(int bookingId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT b.*, r.room_name, u.email AS user_email " +
+                "FROM bookings b " +
+                "JOIN rooms r ON b.room_id = r.id " +
+                "JOIN users u ON b.user_id = u.id " +
+                "WHERE b.id = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(bookingId)});
+
+        if (cursor.moveToFirst()) {
+            Booking booking = cursorToBooking(cursor);
+            cursor.close();
+            return booking;
+        }
+
+        cursor.close();
+        return null;
+    }
+
     private Booking cursorToBooking(Cursor cursor) {
         return new Booking(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
@@ -300,6 +418,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getInt(cursor.getColumnIndexOrThrow("room_id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("room_name")),
                 cursor.getString(cursor.getColumnIndexOrThrow("customer_name")),
+                cursor.getString(cursor.getColumnIndexOrThrow("user_email")),
                 cursor.getString(cursor.getColumnIndexOrThrow("phone")),
                 cursor.getString(cursor.getColumnIndexOrThrow("check_in")),
                 cursor.getString(cursor.getColumnIndexOrThrow("check_out")),
@@ -377,5 +496,141 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return count;
+    }
+
+    private String getImageNameByType(String type) {
+        if (type == null) {
+            return "room_standard";
+        }
+
+        String lowerType = type.toLowerCase();
+
+        if (lowerType.contains("deluxe")) {
+            return "room_deluxe";
+        } else if (lowerType.contains("suite")) {
+            return "room_suite";
+        } else if (lowerType.contains("family")) {
+            return "room_family";
+        } else {
+            return "room_standard";
+        }
+    }
+
+    public boolean checkUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM users WHERE email = ? AND password = ?",
+                new String[]{email, password}
+        );
+
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+
+        return exists;
+    }
+
+    public String getUserName(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT name FROM users WHERE email = ?",
+                new String[]{email}
+        );
+
+        String name = "User";
+
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        }
+
+        cursor.close();
+        return name;
+    }
+
+    public String getUserRole(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT role FROM users WHERE email = ?",
+                new String[]{email}
+        );
+
+        String role = "user";
+
+        if (cursor.moveToFirst()) {
+            role = cursor.getString(cursor.getColumnIndexOrThrow("role"));
+        }
+
+        cursor.close();
+        return role;
+    }
+
+    public String getUserGender(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT gender FROM users WHERE email = ?",
+                new String[]{email}
+        );
+
+        String gender = "male";
+
+        if (cursor.moveToFirst()) {
+            gender = cursor.getString(cursor.getColumnIndexOrThrow("gender"));
+        }
+
+        cursor.close();
+        return gender;
+    }
+
+    public int getUserId(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT id FROM users WHERE email = ?",
+                new String[]{email}
+        );
+
+        int userId = -1;
+
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+        }
+
+        cursor.close();
+        return userId;
+    }
+
+    public boolean checkEmailExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT id FROM users WHERE email = ?",
+                new String[]{email}
+        );
+
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+
+        return exists;
+    }
+
+    public boolean insertUser(String name, String email, String phone, String dob,
+                              String gender, String password, String role) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("email", email);
+        values.put("phone", phone);
+        values.put("dob", dob);
+        values.put("gender", gender);
+        values.put("password", password);
+        values.put("role", role);
+
+        long result = db.insert("users", null, values);
+
+        return result != -1;
     }
 }

@@ -1,110 +1,504 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollRoomDetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/booking_bg">
+    android:background="#F5F7FB"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <!-- COVER -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="@drawable/ic_launcher_background"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_height="310dp">
 
+            <ImageView
+                android:id="@+id/imgRoomCover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/room_deluxe" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#33000000" />
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_circle_white"
+                android:gravity="center"
+                android:text="←"
+                android:textColor="#111827"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnFavorite"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bg_circle_white"
+                android:gravity="center"
+                android:text="♡"
+                android:textColor="#111827"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPhotoCount"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="18dp"
+                android:background="#66000000"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="12 Photos"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+        </FrameLayout>
+
+        <!-- CONTENT -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-26dp"
+            android:background="@drawable/bg_detail_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingStart="22dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="22dp"
+            android:paddingBottom="30dp">
 
             <TextView
                 android:id="@+id/tvRoomName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room"
-                android:textColor="@color/booking_text"
-                android:textSize="26sp"
+                android:text="Deluxe Ocean Room"
+                android:textColor="#111827"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvRoomType"
+                android:id="@+id/tvBranch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Type"
-                android:textColor="@color/booking_muted"
-                android:textSize="15sp" />
+                android:text="Chi nhánh Biển Xanh Resort"
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="⭐ 4.8 (286 đánh giá)"
+                android:textColor="#F59E0B"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Price"
-                android:textColor="@color/booking_blue"
-                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:text="850.000đ / đêm"
+                android:textColor="#111827"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <!-- OFFER -->
+            <TextView
+                android:id="@+id/tvOffer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/bg_booking_card"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_height="44dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_chip_gold"
+                android:gravity="center_vertical"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="Ưu đãi áp dụng: Giảm 10% cho thành viên"
+                android:textColor="#8B5E3C"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvCapacity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Capacity"
-                    android:textColor="@color/booking_text" />
-
-                <TextView
-                    android:id="@+id/tvStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Status"
-                    android:textColor="@color/booking_light_blue"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
+            <!-- DESCRIPTION -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="22dp"
                 android:text="Mô tả phòng"
-                android:textColor="@color/booking_text"
-                android:textSize="18sp"
+                android:textColor="#111827"
+                android:textSize="19sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:lineSpacingExtra="4dp"
-                android:text="Description"
-                android:textColor="@color/booking_muted"
-                android:textSize="15sp" />
+                android:text="Phòng rộng rãi, sạch sẽ, thiết kế hiện đại."
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+
+            <!-- INFO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_policy_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvRoomType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loại phòng: Deluxe"
+                    android:textColor="#111827"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvCapacity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Sức chứa: 2 người"
+                    android:textColor="#111827"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Trạng thái: available"
+                    android:textColor="#16A34A"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- AMENITIES -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="What we offer"
+                android:textColor="#111827"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layoutAmenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <!-- Amenity 1 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="82dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_amenity_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAmenity1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_bed_outline"
+                        android:tint="#21A8F3" />
+
+                    <TextView
+                        android:id="@+id/tvAmenity1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Bed"
+                        android:textColor="#111827"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Amenity 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="82dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_amenity_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAmenity2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_restaurant_outline"
+                        android:tint="#21A8F3" />
+
+                    <TextView
+                        android:id="@+id/tvAmenity2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Dinner"
+                        android:textColor="#111827"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Amenity 3 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="82dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_amenity_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAmenity3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_pool_outline"
+                        android:tint="#21A8F3" />
+
+                    <TextView
+                        android:id="@+id/tvAmenity3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Pool"
+                        android:textColor="#111827"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Amenity 4 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="82dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_amenity_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAmenity4"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_ac_outline"
+                        android:tint="#21A8F3" />
+
+                    <TextView
+                        android:id="@+id/tvAmenity4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="A/C"
+                        android:textColor="#111827"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- POLICY -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Chính sách phòng"
+                android:textColor="#111827"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_policy_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="5dp"
+                    android:text="• Check-in từ 14:00\n• Check-out trước 12:00\n• Hỗ trợ đổi lịch trước 24 giờ\n• Vui lòng mang giấy tờ tùy thân khi nhận phòng"
+                    android:textColor="#4B5563"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- GALLERY -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Gallery"
+                android:textColor="#111827"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgGallery1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/room_deluxe" />
+
+                <ImageView
+                    android:id="@+id/imgGallery2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/amenity_pool" />
+
+                <ImageView
+                    android:id="@+id/imgGallery3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/amenity_lobby" />
+
+            </LinearLayout>
+
+            <!-- HOSTED BY -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="Hosted by"
+                android:textColor="#111827"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgHostAvatar"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avatar_male" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvHostName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ABC Premium Support"
+                        android:textColor="#111827"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHostMeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="⭐ 4.9 (1.8K review)"
+                        android:textColor="#6B7280"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnHostSupport"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_chip_gold"
+                    android:padding="11dp"
+                    android:src="@drawable/ic_chat_outline"
+                    android:tint="#21A8F3" />
+
+            </LinearLayout>
+
+
+            <!-- SUPPORT -->
+            <Button
+                android:id="@+id/btnSupport"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_button_primary_blue"
+                android:backgroundTint="@null"
+                android:text="Cần hỗ trợ về phòng này?"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnBook"
+                android:id="@+id/btnBookNow"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/bg_yellow_button"
-                android:text="Đặt phòng"
-                android:textColor="@color/booking_text"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_button_primary_blue"
+                android:backgroundTint="@null"
+                android:text="Đặt ngay"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

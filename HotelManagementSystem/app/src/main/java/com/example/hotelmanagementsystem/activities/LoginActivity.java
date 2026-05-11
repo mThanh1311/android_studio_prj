@@ -7,11 +7,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hotelmanagementsystem.R;
 import com.example.hotelmanagementsystem.database.DatabaseHelper;
-import com.example.hotelmanagementsystem.models.User;
 import com.example.hotelmanagementsystem.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,39 +36,76 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
 
-        btnLogin.setOnClickListener(v -> login());
+        btnLogin.setOnClickListener(v -> handleLogin());
+
         tvRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
     }
 
-    private void login() {
+    private void handleLogin() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đầy đủ email và mật khẩu", Toast.LENGTH_SHORT).show();
+        if (email.isEmpty()) {
+            edtEmail.setError("Vui lòng nhập email");
+            edtEmail.requestFocus();
             return;
         }
 
-        User user = db.loginUser(email, password);
-
-        if (user == null) {
-            Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+        if (password.isEmpty()) {
+            edtPassword.setError("Vui lòng nhập mật khẩu");
+            edtPassword.requestFocus();
             return;
         }
 
-        sessionManager.saveLogin(user.getId(), user.getName(), user.getEmail(), user.getRole());
+        boolean isValid = db.checkUser(email, password);
 
-        Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+        if (isValid) {
+            int userId = db.getUserId(email);
+            String userName = db.getUserName(email);
+            String role = db.getUserRole(email);
+            String gender = db.getUserGender(email);
 
-        if (user.getRole().equals("admin")) {
-            startActivity(new Intent(this, AdminHomeActivity.class));
+            sessionManager.saveLogin(userId, userName, email, role, gender);
+
+            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+            if ("admin".equals(role)) {
+                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(LoginActivity.this, UserHomeActivity.class);
+                startActivity(intent);
+            }
+
+            finish();
         } else {
-            startActivity(new Intent(this, UserHomeActivity.class));
+            showRegisterSuggestionDialog();
         }
+    }
 
-        finish();
+    private void showRegisterSuggestionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Bạn chưa có tài khoản?");
+        builder.setMessage(
+                "Email hoặc mật khẩu chưa chính xác. Nếu bạn chưa phải là thành viên, hãy đăng ký tài khoản để nhận ưu đãi hấp dẫn, tích điểm thành viên và quản lý lịch sử đặt phòng dễ dàng hơn."
+        );
+
+        builder.setPositiveButton("Đăng ký ngay", (dialog, which) -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("Thử lại", (dialog, which) -> {
+            dialog.dismiss();
+            edtPassword.setText("");
+            edtPassword.requestFocus();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

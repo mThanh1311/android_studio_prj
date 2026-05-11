@@ -17,14 +17,24 @@
         <activity android:name=".activities.AdminBookingActivity" />
         <activity android:name=".activities.AddEditRoomActivity" />
         <activity android:name=".activities.AdminRoomActivity" />
+        <activity android:name=".activities.BookingDetailActivity" />
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.NotificationActivity" />
+        <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.MyBookingsActivity" />
         <activity android:name=".activities.BookingActivity" />
+        <activity android:name=".activities.AmenityDetailActivity" />
         <activity android:name=".activities.RoomDetailActivity" />
         <activity android:name=".activities.RoomListActivity" />
         <activity android:name=".activities.AdminHomeActivity" />
         <activity android:name=".activities.UserHomeActivity" />
         <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.WelcomeActivity" />
         <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.BranchListActivity" />
+        <activity android:name=".activities.AmenityListActivity" />
+        <activity android:name=".activities.CustomerSupportActivity" />
+        <activity android:name=".activities.AccountInfoActivity" />
 
         <activity
             android:name=".activities.SplashActivity"

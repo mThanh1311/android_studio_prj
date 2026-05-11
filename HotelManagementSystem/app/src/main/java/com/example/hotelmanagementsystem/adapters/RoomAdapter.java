@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,17 +43,55 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         Room room = roomList.get(position);
         NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
 
+        holder.imgRoom.setImageResource(getRoomImage(room));
         holder.tvRoomName.setText(room.getName());
-        holder.tvRoomType.setText("Loại: " + room.getType());
-        holder.tvPrice.setText(formatter.format(room.getPrice()) + " VNĐ / đêm");
-        holder.tvCapacity.setText("Sức chứa: " + room.getCapacity() + " người");
-        holder.tvStatus.setText("Trạng thái: " + room.getStatus());
+        holder.tvBranch.setText(room.getBranchName());
+        holder.tvRating.setText(getRatingText(room));
+        holder.tvPrice.setText(formatter.format(room.getPrice()) + "đ / đêm");
+        holder.tvRoomMeta.setText(room.getType() + " • " + room.getCapacity() + " người • " + room.getStatus());
 
-        holder.btnDetail.setOnClickListener(v -> {
-            Intent intent = new Intent(context, RoomDetailActivity.class);
-            intent.putExtra("room_id", room.getId());
-            context.startActivity(intent);
+        holder.cardRoomRoot.setOnClickListener(v -> openRoomDetail(room));
+
+        holder.tvFavorite.setOnClickListener(v -> {
+            holder.tvFavorite.setText("♥");
+            Toast.makeText(context, "Đã thêm vào yêu thích", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private void openRoomDetail(Room room) {
+        Intent intent = new Intent(context, RoomDetailActivity.class);
+        intent.putExtra("room_id", room.getId());
+        context.startActivity(intent);
+    }
+
+    private int getRoomImage(Room room) {
+        String type = room.getType().toLowerCase();
+
+        if (type.contains("standard")) {
+            return R.drawable.room_standard;
+        } else if (type.contains("deluxe")) {
+            return R.drawable.room_deluxe;
+        } else if (type.contains("suite")) {
+            return R.drawable.room_suite;
+        } else if (type.contains("family")) {
+            return R.drawable.room_family;
+        }
+
+        return R.drawable.room_deluxe;
+    }
+
+    private String getRatingText(Room room) {
+        String type = room.getType().toLowerCase();
+
+        if (type.contains("suite")) {
+            return "⭐⭐⭐⭐⭐ 4.9";
+        } else if (type.contains("family")) {
+            return "⭐⭐⭐⭐⭐ 4.8";
+        } else if (type.contains("deluxe")) {
+            return "⭐⭐⭐⭐⭐ 4.7";
+        }
+
+        return "⭐⭐⭐⭐ 4.5";
     }
 
     @Override
@@ -60,18 +100,21 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     }
 
     static class RoomViewHolder extends RecyclerView.ViewHolder {
-        TextView tvRoomName, tvRoomType, tvPrice, tvCapacity, tvStatus;
-        Button btnDetail;
+        FrameLayout cardRoomRoot;
+        ImageView imgRoom;
+        TextView tvFavorite, tvRoomName, tvBranch, tvRating, tvPrice, tvRoomMeta;
 
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            cardRoomRoot = itemView.findViewById(R.id.cardRoomRoot);
+            imgRoom = itemView.findViewById(R.id.imgRoom);
+            tvFavorite = itemView.findViewById(R.id.tvFavorite);
             tvRoomName = itemView.findViewById(R.id.tvRoomName);
-            tvRoomType = itemView.findViewById(R.id.tvRoomType);
+            tvBranch = itemView.findViewById(R.id.tvBranch);
+            tvRating = itemView.findViewById(R.id.tvRating);
             tvPrice = itemView.findViewById(R.id.tvPrice);
-            tvCapacity = itemView.findViewById(R.id.tvCapacity);
-            tvStatus = itemView.findViewById(R.id.tvStatus);
-            btnDetail = itemView.findViewById(R.id.btnDetail);
+            tvRoomMeta = itemView.findViewById(R.id.tvRoomMeta);
         }
     }
 }

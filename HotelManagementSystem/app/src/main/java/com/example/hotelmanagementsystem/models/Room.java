@@ -8,8 +8,11 @@ public class Room {
     private int capacity;
     private String description;
     private String status;
+    private String imageName;
+    private String branchName;
 
-    public Room(int id, String name, String type, int price, int capacity, String description, String status) {
+    public Room(int id, String name, String type, int price, int capacity,
+                String description, String status, String imageName, String branchName) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -17,6 +20,8 @@ public class Room {
         this.capacity = capacity;
         this.description = description;
         this.status = status;
+        this.imageName = imageName;
+        this.branchName = branchName;
     }
 
     public int getId() {
@@ -45,5 +50,13 @@ public class Room {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public String getBranchName() {
+        return branchName;
     }
 }

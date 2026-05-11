@@ -1,9 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.HotelManagementSystem" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Main colors -->
+        <item name="colorPrimary">#21A8F3</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#EAF6FF</item>
+        <item name="colorOnPrimaryContainer">#0D47A1</item>
+
+        <!-- Secondary / accent -->
+        <item name="colorSecondary">#0D47A1</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <!-- Background -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">#F5F7FB</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">#21A8F3</item>
+        <item name="android:navigationBarColor">#000000</item>
+
+        <!-- App default button tint behavior -->
+        <item name="materialButtonStyle">@style/Widget.Hotel.Button</item>
     </style>
 
     <style name="Theme.HotelManagementSystem" parent="Base.Theme.HotelManagementSystem" />
+
+    <style name="Widget.Hotel.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">#21A8F3</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">18dp</item>
+    </style>
+
 </resources>

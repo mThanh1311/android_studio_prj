@@ -1,38 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/booking_bg"
-    android:orientation="vertical">
+    android:background="#F5F7FB">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@color/booking_blue"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="18dp">
+        android:paddingStart="20dp"
+        android:paddingTop="28dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="88dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Danh sách phòng"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:text="One view worth a thousand words"
+            android:textColor="#111827"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Chọn phòng phù hợp nhất cho bạn"
-            android:textColor="#DCEBFF"
+            android:text="Khám phá phòng nghỉ phù hợp với nhu cầu của bạn"
+            android:textColor="#6B7280"
             android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edtSearchRoom"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_search_white"
+            android:hint="Tìm phòng, chi nhánh, loại phòng..."
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:singleLine="true"
+            android:textColor="#111827"
+            android:textSize="14sp" />
+
+        <!-- TYPE FILTER -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/layoutTypeFilters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/filterAll"
+                    style="@style/FilterChipSelected"
+                    android:text="All" />
+
+                <TextView
+                    android:id="@+id/filterStandard"
+                    style="@style/FilterChip"
+                    android:text="Standard" />
+
+                <TextView
+                    android:id="@+id/filterDeluxe"
+                    style="@style/FilterChip"
+                    android:text="Deluxe" />
+
+                <TextView
+                    android:id="@+id/filterSuite"
+                    style="@style/FilterChip"
+                    android:text="Suite" />
+
+                <TextView
+                    android:id="@+id/filterFamily"
+                    style="@style/FilterChip"
+                    android:text="Family" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- BRANCH FILTER -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/layoutBranchFilters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/branchAll"
+                    style="@style/FilterChipSelected"
+                    android:text="Tất cả chi nhánh" />
+
+                <TextView
+                    android:id="@+id/branchCity"
+                    style="@style/FilterChip"
+                    android:text="Trung tâm" />
+
+                <TextView
+                    android:id="@+id/branchBeach"
+                    style="@style/FilterChip"
+                    android:text="Biển Xanh" />
+
+                <TextView
+                    android:id="@+id/branchRiverside"
+                    style="@style/FilterChip"
+                    android:text="Riverside" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tvResultCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="0 phòng phù hợp"
+            android:textColor="#6B7280"
+            android:textSize="13sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRooms"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="14dp"
+            android:layout_weight="1"
+            android:clipToPadding="false" />
+
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerRooms"
+    <!-- SUPPORT FLOATING BUTTON -->
+    <Button
+        android:id="@+id/btnRoomListSupport"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="12dp" />
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_support_button"
+        android:backgroundTint="@null"
+        android:text="Cần hỗ trợ đặt phòng?"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-</LinearLayout>
+</FrameLayout>

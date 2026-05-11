@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FB">
+
+    <ScrollView
+        android:id="@+id/scrollAmenityList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="105dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="18dp">
+
+            <!-- HEADER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                android:background="@drawable/bg_home_header_blue"
+                android:orientation="vertical"
+                android:paddingStart="22dp"
+                android:paddingTop="52dp"
+                android:paddingEnd="22dp"
+                android:paddingBottom="18dp">
+
+                <TextView
+                    android:id="@+id/btnBackAmenity"
+                    android:layout_width="44dp"
+                    android:layout_height="34dp"
+                    android:gravity="center_vertical"
+                    android:text="←"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tiện ích khách sạn"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Lướt để khám phá những tiện ích nổi bật tại ABC Hotel."
+                    android:textColor="#EAF6FF"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- CONTENT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="12dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="12dp">
+
+                <!-- POOL -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_card_white_rounded"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpPool"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_amenity_image_overlay" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hồ bơi ngoài trời"
+                            android:textColor="#FFFFFF"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Không gian hồ bơi sạch sẽ, sang trọng, phù hợp thư giãn và chụp ảnh."
+                            android:textColor="#F8FAFC"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_chip_white_soft"
+                            android:gravity="center"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:text="06:00 - 22:00"
+                            android:textColor="#0F6CBD"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutIndicatorPool"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:id="@+id/dotPool1"
+                                android:layout_width="18dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/bg_indicator_active" />
+
+                            <View
+                                android:id="@+id/dotPool2"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotPool3"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotPool4"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- RESTAURANT -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_card_white_rounded"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpRestaurant"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_amenity_image_overlay" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nhà hàng"
+                            android:textColor="#FFFFFF"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Phục vụ buffet sáng, món Á - Âu và không gian ăn tối sang trọng."
+                            android:textColor="#F8FAFC"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_chip_white_soft"
+                            android:gravity="center"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:text="06:30 - 21:30"
+                            android:textColor="#0F6CBD"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutIndicatorRestaurant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:id="@+id/dotRestaurant1"
+                                android:layout_width="18dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/bg_indicator_active" />
+
+                            <View
+                                android:id="@+id/dotRestaurant2"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotRestaurant3"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotRestaurant4"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- SPA -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_card_white_rounded"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpSpa"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_amenity_image_overlay" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Spa &amp; Wellness"
+                            android:textColor="#FFFFFF"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Massage, xông hơi và chăm sóc sức khỏe trong không gian thư giãn."
+                            android:textColor="#F8FAFC"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_chip_white_soft"
+                            android:gravity="center"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:text="09:00 - 22:00"
+                            android:textColor="#0F6CBD"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutIndicatorSpa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:id="@+id/dotSpa1"
+                                android:layout_width="18dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/bg_indicator_active" />
+
+                            <View
+                                android:id="@+id/dotSpa2"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotSpa3"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotSpa4"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- LOBBY -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_card_white_rounded"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpLobby"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_amenity_image_overlay" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sảnh khách sạn"
+                            android:textColor="#FFFFFF"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Không gian tiếp khách sang trọng, hỗ trợ check-in nhanh và phục vụ 24/7."
+                            android:textColor="#F8FAFC"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_chip_white_soft"
+                            android:gravity="center"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:text="Hỗ trợ 24/7"
+                            android:textColor="#0F6CBD"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutIndicatorLobby"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:id="@+id/dotLobby1"
+                                android:layout_width="18dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/bg_indicator_active" />
+
+                            <View
+                                android:id="@+id/dotLobby2"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotLobby3"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+
+                            <View
+                                android:id="@+id/dotLobby4"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_indicator_inactive" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/layout_bottom_nav_user" />
+
+</FrameLayout>
