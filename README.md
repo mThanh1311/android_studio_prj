@@ -1,4 +1,4 @@
-# Checklist chức năng HotelManagementSystem
+# HotelManagementSystem
 
 ## 1. Welcome / Onboarding
 
