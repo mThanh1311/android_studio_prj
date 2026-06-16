@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="12dp"
+    android:background="@drawable/row_fruit_bg">
+
+    <ImageView
+        android:id="@+id/imgFruit"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="14dp">
+
+        <TextView
+            android:id="@+id/txtFruitName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#1B5E20"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtFruitSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#4E6E50"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:maxLines="2" />
+
+    </LinearLayout>
+
+</LinearLayout>
